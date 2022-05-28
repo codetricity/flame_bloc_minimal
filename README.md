@@ -2,6 +2,8 @@
 
 ![screenshot](assets/readme/screenshot.gif)
 
+## Steps
+
 1. Scaffold body is a `MultiBlocProvider` with child of `Stack`
 2. `Stack` is `Game` and `ScoreScreen`
 3. `ScoreScreen` is a `StatelessWidget` that returns a `BlocBuilder`. This is the same as
@@ -24,9 +26,21 @@ a normal Flutter bloc app
   }
 ```
 
-1. `the SpriteComponent` uses `FlameBlocListenable<CoinBloc, CoinState>` listenable
+### 6. FlameBlocListenable mixin
 
-### Change State
+`the SpriteComponent` uses `FlameBlocListenable<CoinBloc, CoinState>` listenable
+
+```dart
+class Coin extends SpriteComponent
+    with
+        Tappable,
+        HasGameRef<MainGame>,
+        FlameBlocListenable<CoinBloc, CoinState> {
+  final double x;
+  Coin({required this.x}) : super(position: Vector2(x, 30));
+```
+
+### 7. Change Coin State
 
 ```dart
   CoinState? state;
@@ -37,7 +51,7 @@ a normal Flutter bloc app
   }
 ```
 
-### add event
+### 8. add event to bloc stream
 
 ```dart
  @override
@@ -47,9 +61,6 @@ a normal Flutter bloc app
     return super.onTapUp(info);
   }
 ```
-
-
-
 
 ## Environment
 
