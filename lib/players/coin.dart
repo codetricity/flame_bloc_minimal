@@ -9,6 +9,7 @@ class Coin extends SpriteComponent
         Tappable,
         HasGameRef<MainGame>,
         FlameBlocListenable<CoinBloc, CoinState> {
+  @override
   final double x;
   Coin({required this.x}) : super(position: Vector2(x, 30));
 
